@@ -11,7 +11,7 @@
 				<small><?php echo DateFormatHelper::RFC822($blogpost->created); ?> by <?php echo $blogpost->author; ?></small>
 
 				<div class="entry">
-					<?php echo $blogpost->body; ?>
+					<?php echo nl2br($blogpost->body); ?>
 				</div>
 				<p class="postmetadata">
 				<?php foreach(explode(",",$blogpost->tags) as $tag){ ?>

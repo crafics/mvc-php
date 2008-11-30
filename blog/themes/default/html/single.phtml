@@ -11,7 +11,7 @@
 		Tags: <?php echo $blogpost->tags; ?>
 	</p>
 	<p>
-		<?php echo $blogpost->body; ?>
+		<?php echo nl2br($blogpost->body); ?>
 	</p>
 	
 	<?php if(count($blogcomments)>0){ ?>
