@@ -28,7 +28,7 @@ class BlogpostProxy {
 			$this->id = DBConnectionHelper::getInstance()->insert_id();
 		} else {
 			$sql = sprintf("UPDATE `posts` SET `author`='%s', `title`='%s', `body`='%s', `tags`='%s' WHERE id=%d"
-				,$this->author,$this->title,$this->body,$this->tags);
+				,$this->author,$this->title,$this->body,$this->tags,$this->id);
 			DBConnectionHelper::getInstance()->execute($sql);
 		}
 	}

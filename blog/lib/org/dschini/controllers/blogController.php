@@ -29,7 +29,7 @@ class blogController {
 		$ret = array();
 		$ret["tagcloud"] 	= BlogpostProxy::tags();
 		$ret["blogposts"] 	= BlogpostProxy::latestByCreated();
-		$ret["infos"] 		= BlogsettingsProxy::getAll();
+		$ret["settings"] 	= BlogsettingsProxy::getAll();
 		return TemplateHelper::renderToResponse(self::$THEME,"html/posts.phtml",$ret);
 	}
 	
@@ -39,7 +39,7 @@ class blogController {
 	public function thankyouAction(){
 		$ret = array();
 		$ret["tagcloud"] 	= BlogpostProxy::tags();
-		$ret["infos"] 		= BlogsettingsProxy::getAll();
+		$ret["settings"] 	= BlogsettingsProxy::getAll();
 		return TemplateHelper::renderToResponse(self::$THEME,"html/thankyou.phtml",$ret);
 	}
 	
@@ -95,7 +95,7 @@ class blogController {
 	    }
 		$ret["tagcloud"] 	= BlogpostProxy::tags();
 		$ret["blogposts"] 	= BlogpostProxy::latestByCreated();
-		$ret["infos"] 		= BlogsettingsProxy::getAll();
+		$ret["settings"] 	= BlogsettingsProxy::getAll();
 		$ret["nr1"] = rand(0,9);
 		$ret["nr2"] = rand(0,9);
 		return TemplateHelper::renderToResponse(self::$THEME,"html/post.phtml",$ret);
@@ -145,7 +145,7 @@ class blogController {
 		}
 		$ret["tagcloud"]	= BlogpostProxy::tags();
 		$ret["blogposts"] 	= BlogpostProxy::filter($_sqlfilter." ORDER BY created DESC LIMIT 0,30");
-		$ret["infos"] 		= BlogsettingsProxy::getAll();
+		$ret["settings"] 	= BlogsettingsProxy::getAll();
 		return TemplateHelper::renderToResponse(self::$THEME,"/html/posts.phtml",$ret);
 	}
 	
