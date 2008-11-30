@@ -1,7 +1,7 @@
-1. checkout
+1. checkout or download
 ----------------------------------------
 http://code.google.com/p/dschini/source/checkout
-
+http://dschini.googlecode.com/files/blog-v0.2.zip
 
 2. create the database
 ----------------------------------------
@@ -33,6 +33,16 @@ GRANT USAGE ON * . * TO  'dschini'@'localhost' IDENTIFIED BY  'dschini' WITH MAX
 GRANT SELECT , INSERT , UPDATE , DELETE , CREATE , DROP , REFERENCES , INDEX , ALTER , CREATE TEMPORARY TABLES , CREATE VIEW , SHOW VIEW , CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON `blog` . * TO  'dschini'@'localhost';
 
 
-
-3. Open http://localhost/
+3. Unzip and Apache Mappings
 ----------------------------------------
+<VirtualHost *>
+    AccessFileName .htaccess
+    ServerName dschini.localhost
+    DocumentRoot "/srv/www/blog/htdocs"
+</VirtualHost>
+
+
+4. Open http://localhost/blog/
+----------------------------------------
+
+
