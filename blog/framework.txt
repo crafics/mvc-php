@@ -1,0 +1,15 @@
+The filestructure:
+------------------------------------------------------------------
+|-- htdocs                       <- all the public content
+|   |-- css
+|   |-- img
+|   |-- js
+|   `-- swf
+|-- docs
+|-- lib                          <- php libraries divided into namespaces
+|  `-- org
+|      `-- dschini
+|          |-- controllers       <- C
+|          |-- proxies           <- M
+|          `-- helpers             
+`- themes                        <- V

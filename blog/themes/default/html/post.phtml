@@ -1,0 +1,56 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="content" class="narrowcolumn">
+
+	<h2>Post Entry</h2>
+	
+	<?php if(count($error)>0){ ?>
+	<p>
+		<h3 style="color:red;">Ooops! Something is wrong</h3>
+	</p>
+	<?php } ?>
+	
+	<form method="post" id="post" action="/blog/post/">
+	<p>
+		<label for="author">Author:</label>
+		<?php echo isset($error['author'])?'<span style="color:red">*</span>':''; ?>
+		<br/>
+		<input type="text" name="author" id="author" value="<?php echo $author; ?>" />
+	</p>
+	<p>
+		<label for="title">Title:</label>
+		<?php echo isset($error['title'])?'<span style="color:red">*</span>':''; ?>
+		<br/>
+		<input size="40" type="text" name="title" id="title" value="<?php echo $title; ?>" />
+	</p>
+	<p>
+		<label for="body">Body:</label>
+		<?php echo isset($error['body'])?'<span style="color:red">*</span>':''; ?>
+		<br/>
+		<textarea rows="10" cols="40" name="body" id="body"><?php echo $body; ?></textarea>
+	</p>
+	<p>
+		<label for="tags">Tags:</label>
+		<?php echo isset($error['tags'])?'<span style="color:red">*</span>':''; ?>
+		<br/>
+		<input size="40" type="text" name="tags" id="tags" value="<?php echo $tags; ?>" />
+	</p>
+	<p>
+		<label for="total">Please Verify:</label>
+		<?php echo isset($error['total'])?'<span style="color:red">*</span>':''; ?>
+		<br/>
+	    <b style="font-size:16px"><?php echo $nr1; ?> + <?php echo $nr2; ?> = </b>
+	    <input type="hidden" name="nr1" id="nr1" value="<?php echo $nr1; ?>" />
+    	<input type="hidden" name="nr2" id="nr2" value="<?php echo $nr2; ?>" />
+    	<input type="text" name="total" id="total" value="" size="4" maxlength="3" /> 
+    </p>
+	<p>
+		<input type="submit" id="submit" value="Submit" />
+	</p>
+	</form>
+
+</div>
+
+<?php include_once($theme."/html/sidebar.phtml");?>
+
+<?php include_once($theme."/html/footer.phtml");?>

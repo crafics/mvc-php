@@ -1,0 +1,29 @@
+<div id="sidebar">
+	<ul>
+		<li><h2>Navigation</h2>
+			<ul>
+			<li><a href="/blog/post/">Post Entry</a></li>
+			</ul>
+		</li>
+		<li><h2>Tags</h2>
+			<?php
+			foreach($tagcloud['cloud'] as $tag=>$amount){
+				$factor = 16/$tagcloud['high'];
+				$size = ($amount*$factor)<8 ? 8 : $amount*$factor;
+			?>
+			<a href='/blog/tag/?s=<?php echo $tag; ?>' title='<?php echo $amount; ?> posts' style='font-size:<?php echo $size; ?>pt;'><?php echo $tag; ?></a>
+			<?php
+			}
+			?>
+		</li>
+		<li><h2>Search</h2>
+			<ul>
+			<form action="/blog/search/" method="post">
+				<input style="width:80px;" type="text" name="s" value="" />
+				<input style="width:40px;" type="submit" value="go!" />
+			</form>
+			</ul>
+		</li>
+	</ul>
+</div>
+
