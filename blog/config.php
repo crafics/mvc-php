@@ -13,7 +13,8 @@ define('DATABASE_HOST', 'localhost');
 define('DATABASE_PORT', 3306);
 
 /* define basedir */
-$basedir = "/srv/www/dschini/blog/";
+//$basedir = "/srv/www/dschini/blog/";
+$basedir = "C:/Programme/Apache Software Foundation/Apache2.2/htdocs/dschini/blog/";
 
 /* defines */
 define('URL_BLOG_HOME'		,'http://dschini.localhost/blog/');
