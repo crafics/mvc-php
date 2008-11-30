@@ -1,0 +1,67 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="content" class="narrowcolumn">
+
+	<h2><?php echo $blogpost->title; ?></h2>
+	
+	<p>
+		Author: <?php echo $blogpost->author; ?>
+	</p>
+	<p>
+		Tags: <?php echo $blogpost->tags; ?>
+	</p>
+	<p>
+		<?php echo $blogpost->body; ?>
+	</p>
+	
+	<?php if(count($blogcomments)>0){ ?>
+	<p>
+	<b>Comments</b>
+	</p>
+	<?php } ?>
+	
+	<?php foreach($blogcomments as $blogcomment){ ?>
+	<p>
+		<?php echo $blogcomment->author; ?> - <?php echo DateFormatHelper::RFC822($blogcomment->created); ?>
+	</p>
+	<p>
+		<?php echo $blogcomment->body; ?>
+	</p>
+	<?php } ?>
+	
+	<p>
+		<b>Post comment!</b>
+	</p>
+	
+	<form method="post" id="post" action="">
+	<p>
+		<label for="author">Author:</label>
+		<?php echo isset($error['author'])?'<span style="color:red">*</span>':''; ?>
+		<br/>
+		<input type="text" name="author" id="author" value="<?php echo $author; ?>" />
+	</p>
+	<p>
+		<label for="body">Text:</label>
+		<?php echo isset($error['body'])?'<span style="color:red">*</span><br/>':'<br/>'; ?>
+		<textarea rows="10" cols="40" name="body" id="body"><?php echo $body; ?></textarea>
+	</p>
+	<p>
+		<label for="total">Please Verify:</label>
+		<?php echo isset($error['total'])?'<span style="color:red">*</span>':''; ?>
+		<br/>
+	    <b style="font-size:16px"><?php echo $nr1; ?> + <?php echo $nr2; ?> = </b>
+	    <input type="hidden" name="nr1" id="nr1" value="<?php echo $nr1; ?>" />
+    	<input type="hidden" name="nr2" id="nr2" value="<?php echo $nr2; ?>" />
+    	<input type="text" name="total" id="total" value="" size="4" maxlength="3" /> 
+    </p>
+	<p>
+		<input type="hidden" name="post_id" id="post_id" value="<?php echo $blogpost->id; ?>" />
+		<input type="submit" id="submit" value="Submit" />
+	</p>
+	</form>
+
+</div>
+
+<?php include_once($theme."/html/sidebar.phtml");?>
+
+<?php include_once($theme."/html/footer.phtml");?>

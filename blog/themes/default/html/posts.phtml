@@ -7,7 +7,7 @@
 		<?php foreach($blogposts as $blogpost){ ?>
 
 			<div class="post" id="post-<?php echo $blogpost->id; ?>">
-				<h2><a href="/blog/post/<?php echo $blogpost->id; ?>/<?php echo URLHelper::clean($blogpost->title); ?>/" rel="bookmark" title="Permanent Link to <?php echo $blogpost->title; ?>"><?php echo $blogpost->title; ?></a></h2>
+				<h2><a href="/blog/<?php echo $blogpost->id; ?>/<?php echo URLHelper::clean($blogpost->title); ?>/" rel="bookmark" title="Permanent Link to <?php echo $blogpost->title; ?>"><?php echo $blogpost->title; ?></a></h2>
 				<small><?php echo DateFormatHelper::RFC822($blogpost->created); ?> by <?php echo $blogpost->author; ?></small>
 
 				<div class="entry">

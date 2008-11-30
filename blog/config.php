@@ -23,6 +23,7 @@ define("THEME_DEFAULT"		,$basedir."themes/default/");
 /* load proxies */
 include($basedir."lib/org/dschini/proxies/BlogpostProxy.php");
 include($basedir."lib/org/dschini/proxies/BlogsettingsProxy.php");
+include($basedir."lib/org/dschini/proxies/BlogcommentProxy.php");
 
 /* load controllers */
 include($basedir."lib/org/dschini/controllers/blogController.php");

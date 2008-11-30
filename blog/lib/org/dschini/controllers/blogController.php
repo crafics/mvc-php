@@ -23,6 +23,50 @@ class blogController {
 	}
 
 	/*
+	 * singlePost
+	 */
+	public function singlePostAction($id){
+		$ret = array();
+		if(TemplateHelper::isPost()){
+			if(!isset($_POST["post_id"])){
+				TemplateHelper::redirect('/blog/');
+			}
+			$ret["post_id"] = (int)strip_tags($_POST["post_id"]);
+			$ret["author"] = strip_tags($_POST["author"]);
+			if(strlen($ret["author"])<3 || strlen($ret["author"])>100){
+				$ret["error"]["author"] = "author_invalid";
+			}
+			$ret["body"] = strip_tags($_POST["body"]);
+	        if(strlen($ret["body"])<10 || strlen($ret["body"])>2500){
+	                $ret["error"]["body"] = "body_invalid";
+	        }
+			/* security check */
+			$nr1 = (int)$_POST["nr1"];
+			$nr2 = (int)$_POST["nr2"];
+			$total = (int)$_POST["total"];
+			if($nr1+$nr2!=$total){
+				$ret["error"]["total"] = "total_invalid";
+			}
+			/* success */
+			if(!isset($ret['error'])){
+				$blogcommentProxy = new BlogcommentProxy();
+				$blogcommentProxy->post_id = DBConnectionHelper::escape($ret["post_id"]);
+				$blogcommentProxy->author = DBConnectionHelper::escape($ret["author"]);
+				$blogcommentProxy->body = DBConnectionHelper::escape($ret["body"]);
+				$blogcommentProxy->save();
+				TemplateHelper::redirect('/blog/'.$blogcommentProxy->post_id.'/');
+			}
+		}
+		$ret["tagcloud"]		= BlogpostProxy::tags();
+		$ret["blogpost"] 		= BlogpostProxy::get($id);
+		$ret["blogcomments"]	= BlogcommentProxy::getByPostId($id);
+		$ret["settings"] 		= BlogsettingsProxy::getAll();
+		$ret["nr1"] = rand(0,9);
+		$ret["nr2"] = rand(0,9);
+		return TemplateHelper::renderToResponse(self::$THEME,"/html/single.phtml",$ret);
+	}
+	
+	/*
 	 * latestBlogPostsAction
 	 */
 	public function latestBlogPostsAction($cat="latest"){

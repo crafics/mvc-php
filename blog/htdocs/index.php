@@ -9,7 +9,7 @@ foreach($url_mappings as $pattern => $view){
 	    $arr = explode('::',$view);
 	    $result[1] = isset($result[1]) ? $result[1] : array();
 	    $result[2] = isset($result[2]) ? $result[2] : array();
-		call_user_func($arr);
+		call_user_func($arr,$result[1],$result[2]);
 		exit();
 	}
 }
