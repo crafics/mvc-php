@@ -40,7 +40,7 @@ class BlogpostProxy {
 		$sql = sprintf("SELECT * from posts WHERE `id`=%d",$id);
 		$row = DBConnectionHelper::getInstance()->query($sql);
 		if(sizeof($row)>0){
-			$obj = new stdClass();
+			$obj = new BlogpostProxy();
 			foreach($row[0] as $key => $value){
 				$obj->{$key} = $value;
 			}
@@ -84,7 +84,7 @@ class BlogpostProxy {
         $rows = DBConnectionHelper::getInstance()->query($sql);
         $arr = array();
         foreach($rows AS $row){
-			$obj = new stdClass();
+			$obj = new BlogpostProxy();
         	foreach($row as $key => $value){
             	$obj->{$key} = $value;
 			}
@@ -101,7 +101,7 @@ class BlogpostProxy {
 		$rows = DBConnectionHelper::getInstance()->query($sql);
 		$arr = array();
 		foreach($rows AS $row){
-			$obj = new stdClass();
+			$obj = new BlogpostProxy();
 			foreach($row as $key => $value){
 				$obj->{$key} = $value;
 			}
