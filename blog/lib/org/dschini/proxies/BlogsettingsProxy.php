@@ -26,7 +26,7 @@ class BlogsettingsProxy
 			$this->id = DBConnectionHelper::getInstance()->insert_id();
 		} else {
 			$sql = sprintf("UPDATE `infos` SET `name`='%s', `value`='%s' WHERE id=%d"
-				,$this->name,$this->value);
+				,$this->name,$this->value,$this->id);
 			DBConnectionHelper::getInstance()->execute($sql);
 		}
 	}
