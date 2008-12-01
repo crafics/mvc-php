@@ -46,6 +46,14 @@ GRANT USAGE ON * . * TO  'dschini'@'localhost' IDENTIFIED BY  'dschini' WITH MAX
 
 GRANT SELECT , INSERT , UPDATE , DELETE , CREATE , DROP , REFERENCES , INDEX , ALTER , CREATE TEMPORARY TABLES , CREATE VIEW , SHOW VIEW , CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON `blog` . * TO  'dschini'@'localhost';
 
+INSERT INTO `settings` (`id`, `created`, `name`, `value`) VALUES(1, '2008-11-29 19:29:12', 'name', 'Blog Starter Pack');
+INSERT INTO `settings` (`id`, `created`, `name`, `value`) VALUES(2, '2008-11-29 19:29:12', 'description', 'powered by dschini - a lightweight php framework ');
+INSERT INTO `settings` (`id`, `created`, `name`, `value`) VALUES(3, '2008-11-29 19:29:12', 'languageAttributes', 'dir=');
+INSERT INTO `settings` (`id`, `created`, `name`, `value`) VALUES(4, '2008-11-29 19:29:12', 'htmlType', 'text/html');
+INSERT INTO `settings` (`id`, `created`, `name`, `value`) VALUES(5, '2008-11-29 19:29:12', 'charset', 'UTF-8');
+INSERT INTO `settings` (`id`, `created`, `name`, `value`) VALUES(6, '2008-11-29 19:29:36', 'cssFolder', '/css');
+INSERT INTO `settings` (`id`, `created`, `name`, `value`) VALUES(7, '2008-11-29 19:29:36', 'imgFolder', '/img');
+
 
 3. Unzip and Apache Mappings
 ----------------------------------------

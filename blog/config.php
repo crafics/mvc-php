@@ -17,7 +17,6 @@ define('DATABASE_PORT', 3306);
 $basedir = "C:/Programme/Apache Software Foundation/Apache2.2/htdocs/dschini/blog/";
 
 /* defines */
-define('URL_BLOG_HOME'		,'http://dschini.localhost/blog/');
 define("THEME_DEFAULT"		,$basedir."themes/default/");
 
 /* load proxies */
@@ -27,6 +26,7 @@ include($basedir."lib/org/dschini/proxies/BlogcommentProxy.php");
 
 /* load controllers */
 include($basedir."lib/org/dschini/controllers/blogController.php");
+include($basedir."lib/org/dschini/controllers/adminController.php");
 
 /* load helpers */
 include($basedir."lib/org/dschini/helpers/MySQLDriverHelper.php");

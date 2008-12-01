@@ -13,7 +13,7 @@
 				<div class="entry">
 					<?php echo nl2br($blogpost->body); ?>
 				</div>
-				<p class="postmetadata">
+				<p class="postmetadata">Tags:
 				<?php foreach(explode(",",$blogpost->tags) as $tag){ ?>
 				<a href="/blog/tag/?s=<?php echo trim($tag); ?>" rel="tag"><?php echo trim($tag); ?></a>
 				<?php } ?>

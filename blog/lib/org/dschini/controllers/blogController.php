@@ -50,9 +50,9 @@ class blogController {
 			/* success */
 			if(!isset($ret['error'])){
 				$blogcommentProxy = new BlogcommentProxy();
-				$blogcommentProxy->post_id = DBConnectionHelper::escape($ret["post_id"]);
-				$blogcommentProxy->author = DBConnectionHelper::escape($ret["author"]);
-				$blogcommentProxy->body = DBConnectionHelper::escape($ret["body"]);
+				$blogcommentProxy->post_id = DBConnectionHelper::getInstance()->escape($ret["post_id"]);
+				$blogcommentProxy->author = DBConnectionHelper::getInstance()->escape($ret["author"]);
+				$blogcommentProxy->body = DBConnectionHelper::getInstance()->escape($ret["body"]);
 				$blogcommentProxy->save();
 				TemplateHelper::redirect('/blog/'.$blogcommentProxy->post_id.'/');
 			}
@@ -129,10 +129,10 @@ class blogController {
 			/* success */
 			if(!isset($ret['error'])){
 				$blogpostProxy = new BlogpostProxy();
-				$blogpostProxy->author = $ret["author"];
-				$blogpostProxy->title = $ret["title"];
-				$blogpostProxy->body = $ret["body"];
-				$blogpostProxy->tags = $ret["tags"];
+				$blogpostProxy->author = DBConnectionHelper::getInstance()->escape($ret["author"]);
+				$blogpostProxy->title = DBConnectionHelper::getInstance()->escape($ret["title"]);
+				$blogpostProxy->body = DBConnectionHelper::getInstance()->escape($ret["body"]);
+				$blogpostProxy->tags = DBConnectionHelper::getInstance()->escape($ret["tags"]);
 				$blogpostProxy->save();
 				TemplateHelper::redirect('/blog/post/thankyou/');
 			}

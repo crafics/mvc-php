@@ -25,10 +25,26 @@ class BlogsettingsProxy
 			DBConnectionHelper::getInstance()->execute($sql);
 			$this->id = DBConnectionHelper::getInstance()->insert_id();
 		} else {
-			$sql = sprintf("UPDATE `infos` SET `name`='%s', `value`='%s' WHERE id=%d"
+			$sql = sprintf("UPDATE `settings` SET `name`='%s', `value`='%s' WHERE id=%d"
 				,$this->name,$this->value,$this->id);
 			DBConnectionHelper::getInstance()->execute($sql);
 		}
+	}
+	
+	/*
+	 * getByName
+	 */
+	public static function getByName( $name ){
+		$sql = sprintf("SELECT * from settings WHERE `name`='%s'",$name);
+		$row = DBConnectionHelper::getInstance()->query($sql);
+		if(sizeof($row)>0){
+			$obj = new BlogsettingsProxy();
+			foreach($row[0] as $key => $value){
+				$obj->{$key} = $value;
+			}
+			return $obj;
+		}
+		return null;
 	}
 
 	/*

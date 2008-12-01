@@ -1,0 +1,38 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="content" class="narrowcolumn">
+
+	<h2>Blog Settings</h2>
+	
+	<?php if(count($settings)<=0){ ?>
+	<p>
+		<h3 style="color:red;">Ooops! No settings!</h3>
+	</p>
+	<?php } ?>
+	<?php if(count($error)>0){ ?>
+	<p>
+		<h3 style="color:red;">Ooops! Something is wrong!</h3>
+	</p>
+	<?php } ?>
+	
+	<form method="post" id="post" action="/blog/settings/">
+	<?php foreach($settings AS $name=>$value){ ?>
+	<p>
+		<label for="<?php echo $name; ?>"><?php echo $name; ?></label>
+		<?php if(isset($error[$name])){ ?>
+				<span style="color:red">*</span>
+		<?php } ?>
+		<br/>
+		<input size="60" type="text" name="settings[<?php echo $name; ?>]" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
+	</p>
+	<?php } ?>
+	<p>
+		<input type="submit" id="submit" value="Submit" />
+	</p>
+	</form>
+
+</div>
+
+<?php include_once($theme."/html/sidebar.phtml");?>
+
+<?php include_once($theme."/html/footer.phtml");?>
