@@ -146,6 +146,42 @@ class blogController {
 	}
 	
 	/*
+	 * loginAction
+	 */
+	public function loginAction(){
+		
+		$ret = array();
+		
+		if(TemplateHelper::isPost()){
+			$ret["email"] = InputFilterHelper::getString($_POST["email"]);
+			if(strlen($ret["email"])>100){
+            	$ret["error"]["email"] = "email_toolong";
+            }
+			if(!preg_match("/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/", $ret["email"])){
+		        $ret["error"]["email"] = "email_invalid";
+	        }
+			$password = InputFilterHelper::getString($_POST["password"]);
+			if(strlen($password)<4 || strlen($password)>8){
+				$ret["error"]["password"] = "password_invalid";
+			}
+			if($ret["email"]!='test@test.com' || $password!='test'){
+				$ret["error"]["login"] = "login_invalid";
+			}
+
+			/* success */
+			if(!isset($ret['error'])){
+				$_SESSION['rights'] = $_SESSION['rights'] | pow(2,RIGHT_ADMIN);
+				$next = InputFilterHelper::getString($_GET['next']);
+				TemplateHelper::redirect($next?$next:'/blog/');
+			}
+	    }
+		$ret["tagcloud"] 	= BlogpostProxy::tags();
+		$ret["blogposts"] 	= BlogpostProxy::latestByCreated();
+		$ret["settings"] 	= BlogsettingsProxy::getAll();
+		return TemplateHelper::renderToResponse(self::$THEME,"html/login.phtml",$ret);
+	}
+	
+	/*
 	 * tagAction
 	 */
 	public function tagAction(){

@@ -16,9 +16,8 @@ foreach($urls as $pattern => $_request){
 				);
 			exit();
 		}
-		/* call 404 page */
-		echo "index.php -> create a default page!";
-		exit();
+		/* call login page */
+		TemplateHelper::redirect('/blog/login/?next='.$_SERVER['REQUEST_URI']);
 	}
 }
 

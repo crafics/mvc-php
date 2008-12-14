@@ -1,0 +1,31 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="content" class="narrowcolumn">
+
+<form action="" method="post" id="form"> 
+
+  <?php if(count($error)>0){ ?>
+  <h2 style="color:red;">Ooops! No!</h2>
+  <?php } ?>
+  <h2 style="padding-top:10px;border-bottom:1px dotted #ccc;">Login</h2>
+  <p>
+  	To login please enter email and password:
+  </p>
+  <p>
+    <label for="email"><small>E-Mail:</small> <b style="color:red;font-size:24px;">*</b></label><br/> 
+    <input type="text" name="email" id="email" value="<?php echo $email; ?>" maxlength="100" size="40" style="<?php echo isset($error['email'])?'border:1px solid red':''; ?>" /> 
+  </p>
+  <p>
+    <label for="password"><small>Passwort:</small> <b style="color:red;font-size:24px;">*</b></label><br/> 
+    <input type="password" name="password" id="password" value="<?php echo $password; ?>" maxlength="100" size="40" style="<?php echo isset($error['password'])?'border:1px solid red':''; ?>" /> 
+  </p>
+  <p> 
+   <input type="submit" id="submit" value="Submit" />
+  </p> 
+  </form> 
+
+</div>
+
+<?php include_once($theme."/html/sidebar.phtml");?>
+
+<?php include_once($theme."/html/footer.phtml");?>
