@@ -34,7 +34,6 @@ include(BASEDIR."lib/org/dschini/controllers/blogController.php");
 include(BASEDIR."lib/org/dschini/controllers/adminController.php");
 
 /* load helpers */
-include(BASEDIR."lib/org/dschini/helpers/AccountHelper.php");
 include(BASEDIR."lib/org/dschini/helpers/RequestHelper.php");
 include(BASEDIR."lib/org/dschini/helpers/MySQLDriverHelper.php");
 include(BASEDIR."lib/org/dschini/helpers/TemplateHelper.php");
