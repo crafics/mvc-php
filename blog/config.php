@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 ini_set('display_errors',true);
 ini_set('error_reporting', E_ALL);
 ini_set('log_errors',1);
@@ -14,25 +12,38 @@ define('DATABASE_PORT', 3306);
 
 /* define basedir */
 //$basedir = "/srv/www/dschini/blog/";
-$basedir = "C:/Programme/Apache Software Foundation/Apache2.2/htdocs/dschini/blog/";
+define('BASEDIR' ,dirname($_SERVER['DOCUMENT_ROOT']).DIRECTORY_SEPARATOR);
 
 /* defines */
-define("THEME_DEFAULT"		,$basedir."themes/default/");
+define("THEME_DEFAULT" ,BASEDIR."themes/default/");
+
+/* simple bit rights */
+define("RIGHT_PUBLIC"	,0);
+define("RIGHT_PRIVATE"	,1);
 
 /* load proxies */
-include($basedir."lib/org/dschini/proxies/BlogpostProxy.php");
-include($basedir."lib/org/dschini/proxies/BlogsettingsProxy.php");
-include($basedir."lib/org/dschini/proxies/BlogcommentProxy.php");
+include(BASEDIR."lib/org/dschini/proxies/BlogpostProxy.php");
+include(BASEDIR."lib/org/dschini/proxies/BlogsettingsProxy.php");
+include(BASEDIR."lib/org/dschini/proxies/BlogcommentProxy.php");
 
 /* load controllers */
-include($basedir."lib/org/dschini/controllers/blogController.php");
-include($basedir."lib/org/dschini/controllers/adminController.php");
+include(BASEDIR."lib/org/dschini/controllers/blogController.php");
+include(BASEDIR."lib/org/dschini/controllers/adminController.php");
 
 /* load helpers */
-include($basedir."lib/org/dschini/helpers/MySQLDriverHelper.php");
-include($basedir."lib/org/dschini/helpers/TemplateHelper.php");
-include($basedir."lib/org/dschini/helpers/DateFormatHelper.php");
-include($basedir."lib/org/dschini/helpers/URLHelper.php");
+include(BASEDIR."lib/org/dschini/helpers/AccountHelper.php");
+include(BASEDIR."lib/org/dschini/helpers/RequestHelper.php");
+include(BASEDIR."lib/org/dschini/helpers/MySQLDriverHelper.php");
+include(BASEDIR."lib/org/dschini/helpers/TemplateHelper.php");
+include(BASEDIR."lib/org/dschini/helpers/DateFormatHelper.php");
+include(BASEDIR."lib/org/dschini/helpers/URLHelper.php");
+
+$GLOBALS['rights'] = pow(2,RIGHT_PUBLIC);
+if(AccountHelper::isLoggedIn()){
+	$GLOBALS['rights'] = $GLOBALS['rights'] | AccountHelper::getAccountRights();
+}
 
 /* load urls */
-include($basedir."urls.php");
+include(BASEDIR."urls.php");
+
+session_start();

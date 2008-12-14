@@ -1,17 +1,25 @@
 <?php
 include("../config.php");
+
 /*
  * Front controller
  */
-foreach($url_mappings as $pattern => $view){
+foreach($urls as $pattern => $_request){
 	$pattern = '/'.str_replace('/','\\/',substr($pattern,0,strlen($pattern))).'/';
-	if(preg_match($pattern, $_SERVER['REQUEST_URI'],$result)){
-	    $arr = explode('::',$view);
-	    $result[1] = isset($result[1]) ? $result[1] : array();
-	    $result[2] = isset($result[2]) ? $result[2] : array();
-		call_user_func($arr,$result[1],$result[2]);
+	$params = array();
+	if(preg_match($pattern, $_SERVER['REQUEST_URI'],$params_match)){
+		new RequestHelper($_request,$params_match);
+		if( $GLOBALS['rights'] & RequestHelper::getInstance()->right ) { 
+			call_user_func_array(
+				array($_request['controller'],$_request['action']),
+				RequestHelper::getInstance()->params
+				);
+			exit();
+		}
+		/* call 404 page */
+		echo "index.php -> create a default page!";
 		exit();
 	}
 }
 
-echo "something wrong!";
+header('Location: /');
