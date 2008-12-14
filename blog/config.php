@@ -21,6 +21,9 @@ define("THEME_DEFAULT" ,BASEDIR."themes/default/");
 define("RIGHT_PUBLIC"	,0);
 define("RIGHT_PRIVATE"	,1);
 
+/* define user rights */
+$GLOBALS['rights'] = pow(2,RIGHT_PUBLIC);
+
 /* load proxies */
 include(BASEDIR."lib/org/dschini/proxies/BlogpostProxy.php");
 include(BASEDIR."lib/org/dschini/proxies/BlogsettingsProxy.php");
@@ -37,11 +40,6 @@ include(BASEDIR."lib/org/dschini/helpers/MySQLDriverHelper.php");
 include(BASEDIR."lib/org/dschini/helpers/TemplateHelper.php");
 include(BASEDIR."lib/org/dschini/helpers/DateFormatHelper.php");
 include(BASEDIR."lib/org/dschini/helpers/URLHelper.php");
-
-$GLOBALS['rights'] = pow(2,RIGHT_PUBLIC);
-if(AccountHelper::isLoggedIn()){
-	$GLOBALS['rights'] = $GLOBALS['rights'] | AccountHelper::getAccountRights();
-}
 
 /* load urls */
 include(BASEDIR."urls.php");
