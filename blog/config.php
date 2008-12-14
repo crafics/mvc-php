@@ -11,7 +11,6 @@ define('DATABASE_HOST', 'localhost');
 define('DATABASE_PORT', 3306);
 
 /* define basedir */
-//$basedir = "/srv/www/dschini/blog/";
 define('BASEDIR' ,dirname($_SERVER['DOCUMENT_ROOT']).DIRECTORY_SEPARATOR);
 
 /* defines */
