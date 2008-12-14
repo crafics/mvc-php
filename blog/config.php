@@ -17,12 +17,12 @@ define('BASEDIR' ,dirname($_SERVER['DOCUMENT_ROOT']).DIRECTORY_SEPARATOR);
 /* defines */
 define("THEME_DEFAULT" ,BASEDIR."themes/default/");
 
-/* simple bit rights */
+/* simple rights defs */
 define("RIGHT_PUBLIC"	,0);
 define("RIGHT_PRIVATE"	,1);
 
 /* define user rights */
-$GLOBALS['rights'] = pow(2,RIGHT_PUBLIC);
+$GLOBALS['rights'] = pow(2,RIGHT_PUBLIC) | pow(2,RIGHT_PRIVATE);
 
 /* load proxies */
 include(BASEDIR."lib/org/dschini/proxies/BlogpostProxy.php");
