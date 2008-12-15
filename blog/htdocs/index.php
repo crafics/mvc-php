@@ -17,7 +17,7 @@ foreach($urls as $pattern => $_request){
 			exit();
 		}
 		/* call login page */
-		TemplateHelper::redirect('/blog/login/?next='.$_SERVER['REQUEST_URI']);
+		TemplateHelper::redirect('/blog/admin/login/?next='.$_SERVER['REQUEST_URI']);
 	}
 }
 

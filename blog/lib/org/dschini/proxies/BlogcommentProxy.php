@@ -23,12 +23,19 @@ class BlogcommentProxy {
 	public function save(){
 		if(!isset($this->id)){
 			$sql = sprintf("INSERT INTO `comments` (`created`,`post_id`,`author`,`body`) VALUES (now(),%d,'%s','%s');"
-				,$this->post_id,$this->author,$this->body);
+				,DBConnectionHelper::escape($this->post_id)
+				,DBConnectionHelper::escape($this->author)
+				,DBConnectionHelper::escape($this->body)
+				);
 			DBConnectionHelper::getInstance()->execute($sql);
 			$this->id = DBConnectionHelper::getInstance()->insert_id();
 		} else {
 			$sql = sprintf("UPDATE `comments` SET `post_id`=%d, `author`='%s', `body`='%s' WHERE id=%d"
-				,$this->post_id,$this->author,$this->body,$this->id);
+				,DBConnectionHelper::escape($this->post_id)
+				,DBConnectionHelper::escape($this->author)
+				,DBConnectionHelper::escape($this->body)
+				,DBConnectionHelper::escape($this->id)
+				);
 			DBConnectionHelper::getInstance()->execute($sql);
 		}
 	}

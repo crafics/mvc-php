@@ -23,12 +23,21 @@ class BlogpostProxy {
 	public function save(){
 		if(!isset($this->id)){
 			$sql = sprintf("INSERT INTO `posts` (`created`,`author`,`title`,`body`,`tags`) VALUES (now(),'%s','%s','%s','%s');"
-				,$this->author,$this->title,$this->body,$this->tags);
+				,DBConnectionHelper::escape($this->author)
+				,DBConnectionHelper::escape($this->title)
+				,DBConnectionHelper::escape($this->body)
+				,DBConnectionHelper::escape($this->tags)
+				);
 			DBConnectionHelper::getInstance()->execute($sql);
 			$this->id = DBConnectionHelper::getInstance()->insert_id();
 		} else {
 			$sql = sprintf("UPDATE `posts` SET `author`='%s', `title`='%s', `body`='%s', `tags`='%s' WHERE id=%d"
-				,$this->author,$this->title,$this->body,$this->tags,$this->id);
+				,DBConnectionHelper::escape($this->author)
+				,DBConnectionHelper::escape($this->title)
+				,DBConnectionHelper::escape($this->body)
+				,DBConnectionHelper::escape($this->tags)
+				,DBConnectionHelper::escape($this->id)
+				);
 			DBConnectionHelper::getInstance()->execute($sql);
 		}
 	}

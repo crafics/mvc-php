@@ -7,14 +7,14 @@ $urls = array(
 	'^/blog/feed/$'				=> array('right'=>RIGHT_PUBLIC,'controller'=>'blogController','action'=>'feedAction'),
 	'^/blog/search/$'			=> array('right'=>RIGHT_PUBLIC,'controller'=>'blogController','action'=>'searchAction'),
 	'^/blog/tag/'               => array('right'=>RIGHT_PUBLIC,'controller'=>'blogController','action'=>'tagAction'),
-	'^/blog/post/thankyou/$'    => array('right'=>RIGHT_PUBLIC,'controller'=>'blogController','action'=>'thankyouAction'),
-	'^/blog/post/$'          	=> array('right'=>RIGHT_ADMIN,'controller'=>'blogController','action'=>'postAction'),
 	'^/blog/posts/latest/'    	=> array('right'=>RIGHT_PUBLIC,'controller'=>'blogController','action'=>'latestBlogPostsAction'),
-	'^/blog/login/'   			=> array('right'=>RIGHT_PUBLIC,'controller'=>'blogController','action'=>'loginAction'),
 
 	/* admin stuff */
-	'^/blog/settings/$'   		=> array('right'=>RIGHT_ADMIN,'controller'=>'adminController','action'=>'settingsAction'),
-	'^/blog/admin/$'   			=> array('right'=>RIGHT_ADMIN,'controller'=>'adminController','action'=>'indexAction'),
+	'^/blog/admin/login/'   		=> array('right'=>RIGHT_PUBLIC,'controller'=>'adminController','action'=>'loginAction'),
+	'^/blog/admin/post/$'          	=> array('right'=>RIGHT_ADMIN,'controller'=>'adminController','action'=>'postAction'),
+	'^/blog/admin/post/thankyou/$'	=> array('right'=>RIGHT_ADMIN,'controller'=>'adminController','action'=>'thankyouAction'),
+	'^/blog/admin/settings/$'   	=> array('right'=>RIGHT_ADMIN,'controller'=>'adminController','action'=>'settingsAction'),
+	'^/blog/admin/$'   				=> array('right'=>RIGHT_ADMIN,'controller'=>'adminController','action'=>'indexAction'),
 
 	'^/blog/'          			=> array('right'=>RIGHT_PUBLIC,'controller'=>'blogController','action'=>'indexAction'),
 	'^/$'   					=> array('right'=>RIGHT_PUBLIC,'controller'=>'blogController','action'=>'indexAction'),

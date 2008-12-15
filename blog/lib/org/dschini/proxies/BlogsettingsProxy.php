@@ -21,12 +21,17 @@ class BlogsettingsProxy
 	public function save(){
 		if(!isset($this->id)){
 			$sql = sprintf("INSERT INTO `settings` (`created`,`name`,`value`) VALUES (now(),'%s','%s');"
-				,$this->name,$this->value);
+				,DBConnectionHelper::escape($this->name)
+				,DBConnectionHelper::escape($this->value)
+				);
 			DBConnectionHelper::getInstance()->execute($sql);
 			$this->id = DBConnectionHelper::getInstance()->insert_id();
 		} else {
 			$sql = sprintf("UPDATE `settings` SET `name`='%s', `value`='%s' WHERE id=%d"
-				,$this->name,$this->value,$this->id);
+				,DBConnectionHelper::escape($this->name)
+				,DBConnectionHelper::escape($this->value)
+				,DBConnectionHelper::escape($this->id)
+				);
 			DBConnectionHelper::getInstance()->execute($sql);
 		}
 	}
