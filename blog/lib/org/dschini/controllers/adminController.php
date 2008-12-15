@@ -32,7 +32,8 @@ class adminController {
 				? InputFilterHelper::getArray($_POST['settings'])
 				: array();
 			foreach($ret['settings'] as $name=>$value){
-				if(strlen($value)<3 || strlen(strip_tags($value))>255){
+				if(strlen(InputFilterHelper::getString($value))<3 
+				|| strlen(InputFilterHelper::getString($value))>255){
 					$ret["error"][$name] = $name."_invalid";
 				}
 			}
