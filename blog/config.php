@@ -1,10 +1,11 @@
 <?php
-/* The config file!
-*
-* @author	Manfred Weber
-* @date		20/11/08
-* @see		http://manfred.dschini.org/
-*/
+/* 
+ * The config file!
+ *
+ * @author	Manfred Weber
+ * @date		20/11/08
+ * @see		http://manfred.dschini.org/
+ */
 
 ini_set('display_errors',true);
 ini_set('error_reporting', E_ALL);
@@ -21,8 +22,8 @@ define("THEME_DEFAULT" ,BASEDIR."themes/default/");
 define("RIGHT_PUBLIC", 0);
 define("RIGHT_ADMIN", 1);
 
-/* PHP Libraries
- * 
+/* 
+ * PHP Libraries
  * Add you own libraries!!!
  */
 

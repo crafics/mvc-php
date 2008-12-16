@@ -1,6 +1,10 @@
 <?php
-/*
+/* 
  * RequestHelper
+ *
+ * @author	Manfred Weber
+ * @date	16/12/08
+ * @see		http://manfred.dschini.org/
  */
 class RequestHelper
 {

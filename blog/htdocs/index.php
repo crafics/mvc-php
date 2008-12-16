@@ -1,18 +1,17 @@
 <?php
-/* The Front controller
+/* 
+ * The Front controller
  * This is developed to my best knowledge! You are warned ;)
  *
  * @author	Manfred Weber
- * @date		20/11/08
+ * @date	16/12/08
  * @see		http://manfred.dschini.org/
  */
 
 include("../config.php");
 include("../urls.php");
 
-/*
- * Loop through the urls!
- */
+/* Loop through the urls! */
 foreach($urls as $pattern => $definition){
 	
 	/* Replace backslashes with slashes */
