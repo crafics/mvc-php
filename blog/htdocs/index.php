@@ -54,9 +54,9 @@ foreach($urls as $pattern => $definition){
 			
 			if(!$ok){
 				
-				/* Before Request Execution !!!
+				/* After Request Execution !!!
 				 * 
-				 * Put stuff here that you want to get done BEFORE calling the
+				 * Put stuff here that you want to get done AFTER calling the
 				 * matching controller action! 
 				 */
 				
