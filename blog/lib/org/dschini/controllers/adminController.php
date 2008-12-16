@@ -19,7 +19,7 @@ class adminController {
 	 */
 	public function indexAction(){
 		$ret = array();
-		return TemplateHelper::redirect("/blog/settings/");
+		return RequestHelper::redirect("/blog/settings/");
 	}
 	
 	/*
@@ -27,7 +27,7 @@ class adminController {
 	 */
 	public function settingsAction(){
 		$ret = array();
-		if(TemplateHelper::isPost()){
+		if(RequestHelper::isPost()){
 			$ret['settings'] = is_array($_POST['settings']) 
 				? InputFilterHelper::getArray($_POST['settings'])
 				: array();
@@ -59,7 +59,7 @@ class adminController {
 		
 		$ret = array();
 
-		if(TemplateHelper::isPost()){
+		if(RequestHelper::isPost()){
 			$ret["author"] = InputFilterHelper::getString($_POST["author"]);
 			if(strlen($ret["author"])<3 || strlen($ret["author"])>100){
 				$ret["error"]["author"] = "author_invalid";
@@ -99,7 +99,7 @@ class adminController {
 				$blogpostProxy->body = $ret["body"];
 				$blogpostProxy->tags = $ret["tags"];
 				$blogpostProxy->save();
-				TemplateHelper::redirect('/blog/admin/post/thankyou/');
+				RequestHelper::redirect('/blog/admin/post/thankyou/');
 			}
 	    }
 		$ret["tagcloud"] 	= BlogpostProxy::tags();
@@ -117,7 +117,7 @@ class adminController {
 		
 		$ret = array();
 		
-		if(TemplateHelper::isPost()){
+		if(RequestHelper::isPost()){
 			$ret["email"] = InputFilterHelper::getString($_POST["email"]);
 			if(strlen($ret["email"])>100){
             	$ret["error"]["email"] = "email_toolong";
@@ -135,9 +135,9 @@ class adminController {
 
 			/* success */
 			if(!isset($ret['error'])){
-				$_SESSION['rights'] = $_SESSION['rights'] | pow(2,RIGHT_ADMIN);
+				$_SESSION['userRight'] = $_SESSION['userRight'] | pow(2,RIGHT_ADMIN);
 				$next = InputFilterHelper::getString($_GET['next']);
-				TemplateHelper::redirect($next?$next:'/blog/');
+				RequestHelper::redirect($next?$next:'/blog/');
 			}
 	    }
 		$ret["tagcloud"] 	= BlogpostProxy::tags();

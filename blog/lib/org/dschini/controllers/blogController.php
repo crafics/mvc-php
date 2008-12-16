@@ -19,7 +19,7 @@ class blogController {
 	 */
 	public function indexAction(){
 		$ret = array();
-		return TemplateHelper::redirect("/blog/posts/latest/");
+		return RequestHelper::redirect("/blog/posts/latest/");
 	}
 
 	/*
@@ -27,9 +27,9 @@ class blogController {
 	 */
 	public function singlePostAction($id){
 		$ret = array();
-		if(TemplateHelper::isPost()){
+		if(RequestHelper::isPost()){
 			if(!isset($_POST["post_id"])){
-				TemplateHelper::redirect('/blog/');
+				RequestHelper::redirect('/blog/');
 			}
 			$ret["post_id"] = (int)strip_tags($_POST["post_id"]);
 			$ret["author"] = strip_tags($_POST["author"]);
@@ -54,7 +54,7 @@ class blogController {
 				$blogcommentProxy->author = $ret["author"];
 				$blogcommentProxy->body = $ret["body"];
 				$blogcommentProxy->save();
-				TemplateHelper::redirect('/blog/'.$blogcommentProxy->post_id.'/');
+				RequestHelper::redirect('/blog/'.$blogcommentProxy->post_id.'/');
 			}
 		}
 		$ret["tagcloud"]		= BlogpostProxy::tags();
@@ -90,7 +90,7 @@ class blogController {
 	 */
 	public function searchAction(){
 		if(!isset($_POST['s'])){
-			TemplateHelper::redirect('/blog/posts/latest/');
+			RequestHelper::redirect('/blog/posts/latest/');
 		}
 		$raw = InputFilterHelper::getString($_POST['s']);
 		$raw = str_replace(","," ",$raw);

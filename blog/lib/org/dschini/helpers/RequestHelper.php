@@ -4,28 +4,56 @@
  */
 class RequestHelper
 {
-	public $right;
 	public $controller;
 	public $action;
 	public $params;
 	
-	public function __construct($_request,$params){
-		$this->right = pow(2,$_request['right']);
-		$this->controller = $_request['controller'];
-		$this->action = $_request['action'];
+	public $userRightContainer;
+	public $requiredRight;
+	
+	private static $instance = null;
+	
+	public function __construct(){
+		$this->requiredRight = 0;
+		$this->userRightContainer = 0;
+	}
+	
+	public function setController($controller){
+		$this->controller = $controller;
+	}
+	
+	public function setAction($action){
+		$this->action = $action;
+	}
+
+	public function addUserRight(&$userRightContainer,$right){
+		$this->userRightContainer = $userRightContainer = $userRightContainer | pow(2,$right);
+	}
+	
+	public function setRequiredRight($right){
+		$this->requiredRight = pow(2,$right);
+	}
+
+	public function userHasRequiredRight(){
+		if($this->userRightContainer & $this->requiredRight){
+			return true;
+		}
+		return false;
+	}
+	
+	public function setParams($params){
 		$this->params = $this->numKeysOnly($params);
-		$GLOBALS['helpers']['request'] = $this;
 	}
 	
 	public function isController( $name ){
-		if($GLOBALS['helpers']['request']->controller == $name){
+		if($this->controller == $name){
 			return true;
 		}
 		return false;
 	}
 
 	public function isAction( $name ){
-		if($GLOBALS['helpers']['request']->action == $name){
+		if($this->action == $name){
 			return true;
 		}
 		return false;
@@ -41,11 +69,32 @@ class RequestHelper
 	    return $ret;
 	}
 	
-	public static function getInstance(){
-		if(!isset($GLOBALS['helpers']['request'])){
-			echo "RequestHelper is null";
-			exit();
+	/*
+	 * redirect
+	 */
+	public static function redirect( $target ){
+		header("Location: ".$target);
+		exit();
+	}
+	
+	/*
+	 * isPost
+	 */
+	public static function isPost() {
+		if(isset($_POST)&&sizeof($_POST)>0){
+			return true;
 		}
-		return $GLOBALS['helpers']['request'];
+		return false;
+	}
+	
+	public function getInstance(){
+		if(!self::$instance){
+			self::$instance = new RequestHelper();
+		}
+		return self::$instance;
+	}
+	
+	public final function __clone() {
+		trigger_error( "Cannot clone instance of Singleton pattern", E_USER_ERROR );
 	}
 }

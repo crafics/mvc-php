@@ -20,22 +20,5 @@ class TemplateHelper {
 		}
 	}
 	
-	/*
-	 * redirect
-	 */
-	public static function redirect( $target ){
-		header("Location: ".$target);
-		exit();
-	}
-	
-	/*
-	 * isPost
-	 */
-	public static function isPost() {
-		if(isset($_POST)&&sizeof($_POST)>0){
-			return true;
-		}
-		return false;
-	}
 	
 }

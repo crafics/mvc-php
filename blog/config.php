@@ -18,8 +18,8 @@ define('DATABASE_HOST', 'localhost');
 define('DATABASE_PORT', 3306);
 define('BASEDIR' ,dirname($_SERVER['DOCUMENT_ROOT']).DIRECTORY_SEPARATOR);
 define("THEME_DEFAULT" ,BASEDIR."themes/default/");
-define("RIGHT_PUBLIC"	,0);
-define("RIGHT_ADMIN"	,1);
+define("RIGHT_PUBLIC", 0);
+define("RIGHT_ADMIN", 1);
 
 /* PHP Libraries
  * 
@@ -42,16 +42,9 @@ include(BASEDIR."lib/org/dschini/helpers/DateFormatHelper.php");
 include(BASEDIR."lib/org/dschini/helpers/URLHelper.php");
 
 
-/* load urls */
-include(BASEDIR."urls.php");
-
 /* start session */
 session_start();
 
-/*
- * define user rights
- * you would most probably want to save your session in db
- * storing such data in a session is probably not secure ??? !!!
- */
-$_SESSION['rights'] = !isset($_SESSION['rights']) ? 0 : $_SESSION['rights'];
-$GLOBALS['rights'] = $_SESSION['rights'] | pow(2,RIGHT_PUBLIC);
+/* Saving the rights in a session is not secure!!! */
+RequestHelper::getInstance()->addUserRight($_SESSION['userRight'],RIGHT_PUBLIC);
+
