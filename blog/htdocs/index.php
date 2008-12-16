@@ -1,19 +1,13 @@
 <?php
 /* The Front controller
-*
-* @author	Manfred Weber
-* @date		20/11/08
-* @see		http://manfred.dschini.org/
-*/
-
-include("../config.php");
-
-
-/* Some more information regarding this front controller can be found here:
- * 
  * This is developed to my best knowledge! You are warned ;)
+ *
+ * @author	Manfred Weber
+ * @date		20/11/08
+ * @see		http://manfred.dschini.org/
  */
 
+include("../config.php");
 include("../urls.php");
 
 /*
