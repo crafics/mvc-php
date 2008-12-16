@@ -10,7 +10,6 @@ include("../config.php");
 
 
 /* Some more information regarding this front controller can be found here:
- * http://www.reiersol.com/blog/1_php_in_action/archive/172_the_one-line_web_framework.html
  * 
  * This is developed to my best knowledge! You are warned ;)
  */
