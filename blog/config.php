@@ -42,6 +42,10 @@ include(BASEDIR."urls.php");
 
 session_start();
 
-/* define user rights */
+/*
+ * define user rights
+ * you would most probably want to save your session in db
+ * storing such data in a session is probably not secure ??? !!!
+ */
 $_SESSION['rights'] = !isset($_SESSION['rights']) ? 0 : $_SESSION['rights'];
 $GLOBALS['rights'] = $_SESSION['rights'] | pow(2,RIGHT_PUBLIC);
